@@ -5,6 +5,9 @@
  */
 package com.sbsaulo.saulo.controlador;
 
+import com.sbsaulo.saulo.Entidades.Persona;
+import com.sbsaulo.saulo.dao.IPersonaDao;
+import com.sbsaulo.saulo.dao.PersonaDao;
 import com.sbsaulo.saulo.service.IIndexServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,8 @@ public class IndexController {
     
     @Autowired
     public IIndexServicio indexServicio;
+    @Autowired
+    public IPersonaDao personaDao;
     
    @GetMapping("mensaje")
     public String mensaje(){
@@ -34,6 +39,11 @@ public class IndexController {
         int n1=6,n2=9;
         int suma =n1+n2;
         return suma;
+    }
+    
+    @GetMapping("persona")
+    public Persona obtenerPersona(){
+        return personaDao.findOne(new Long(1));
     }
     
   }
